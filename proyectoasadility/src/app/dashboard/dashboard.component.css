@@ -1,0 +1,58 @@
+/* dashboard.component.css */
+
+body, html {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .container-fluid {
+    height: 100%;
+  }
+  
+  .row {
+    height: 50%;
+    text-align: center;
+  }
+  
+  .col-md-6 {
+    padding: 20px;
+    cursor: pointer;
+    color: #fff;
+    height: 100%;
+  }
+  
+  .host-btn {
+    background-color: #5bc0de; /* Color para el lado HOST */
+  }
+  
+  .join-btn {
+    background-color: #5cb85c; /* Color para el lado JOIN */
+  }
+  
+  form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #337ab7; /* Color para los botones de acción */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #286090; /* Color al pasar el ratón sobre el botón */
+  }
+  
