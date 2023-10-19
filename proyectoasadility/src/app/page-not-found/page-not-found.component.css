@@ -1,0 +1,14 @@
+.error-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  h1 {
+    font-size: 6em;
+    color: #d9534f; /* Color de Bootstrap para alertas de error */
+  }
+  
+  p {
+    font-size: 1.5em;
+  }
+  
