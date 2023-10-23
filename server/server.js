@@ -1,7 +1,9 @@
-//server.js
-var express = require('express');
+import userApi from "./user-api.mjs";
+import express from 'express';
+
 var app = express();
 
+app.use("/rooms", userApi),
 
 app.get('/', function(req, res) {
     res.send('Hello World');
