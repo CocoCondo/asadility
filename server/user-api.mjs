@@ -14,14 +14,14 @@ router.post('/rooms', (req, res) => {
 });
 
 //Agregar users a un room
-router.post('/rooms/:room', (req,res) => {
+router.post('/:room', (req,res) => {
     const user = req.body;
     console.log(user);
 });
 
 router.get('/', (req,res) => {
-    console.log("aca ta pegando",req);
-    res.send('pum00}');
+    console.log("Hace get",req);
+    res.send('Funciona el get');
 });
 
 export default router;
