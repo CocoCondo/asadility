@@ -21,6 +21,15 @@ const portDB = 3000;
 app.use("/api", userApi);
 app.use(authentication);
 
+const portDB = 3000;
+//Conectar a MongoDB
+mongoose.connect('mongodb://localhost:27017/base_asadility');
+
+//Rutas de la API
+//console.log(adminApi);
+app.use("/api", userApi);
+app.use("/api", adminApi);
+
 // app.get('/', function(req: Request, res: Response) {
 //     res.send('Hello World')
 // });
