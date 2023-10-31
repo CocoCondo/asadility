@@ -14,7 +14,7 @@ router.post('/rooms', (req, res) => {
 });
 
 //Agregar users a un room
-router.post('/:room', (req,res) => {
+router.post('/room', (req,res) => {
     const user = req.body;
     console.log(user);
 });
