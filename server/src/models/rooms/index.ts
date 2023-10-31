@@ -2,7 +2,8 @@ import mongoose from 'mongoose';
 
 //Definir un esquema
 const schemaRooms = new mongoose.Schema({
-    code: String
+    code: String,
+    players: []
 });
 
 //Crear un modelo basado en el esquema

@@ -1,25 +1,72 @@
 import express from 'express';
+import { modeloRooms } from './models/rooms';
 
 const router = express.Router();
 
-// Donde guardamos las salas
-let rooms = [];
-
 //Agregar rooms a la DB
 router.post('/rooms', (req, res) => {
-    const room = req.body;
-    rooms.push(room);
-    //console.log(room);
-    res.send('Room was added to the database');
+    const roomInfo = new modeloRooms(req.body);
+    roomInfo.save().then(room => {
+        console.log(room)
+    }).catch(error => console.error(error))
+    res.send('room was added to the database');
 });
 
 //Agregar users a un room
-router.post('/rooms/:room', (req,res) => {
-    const user = req.body;
-    //console.log(user);
+router.patch('/rooms/:code/addPlayers', async (req, res) => {
+    const roomCode = req.params.code;
+    const newPlayers = req.body.players; // Supongamos que el cuerpo de la solicitud contiene los nuevos jugadores
+
+    try {
+        // Utilizar findOne para encontrar la sala por su atributo 'code'
+        const room = await modeloRooms.findOne({ code: roomCode });
+
+        // Verificar si se encontró la sala
+        if (!room) {
+            return res.status(404).json({ mensaje: `Sala con código ${roomCode} no encontrada` });
+        }
+
+        // Agregar jugadores al arreglo 'players'
+        room.players.push(...newPlayers);
+
+        // Guardar los cambios en la base de datos
+        await room.save();
+
+        res.json({ mensaje: `Jugadores agregados con éxito a la sala con código ${roomCode}` });
+    } catch (error: any) {
+        res.status(500).json({ error: error.message });
+    }
+    /*
+    {
+    "players": ["jugador1", "jugador2", "jugador3"] //Así se ve el cuerpo de la solicitud
+    }
+    */
 });
 
-router.get('/', (req,res) => {
+// Ruta para eliminar elementos del arreglo 'players'
+router.patch('/rooms/:code/removePlayers', async (req, res) => {
+    const roomCode = req.params.code;
+    const playersToRemove = req.body.players; // Supongamos que el cuerpo de la solicitud contiene los jugadores a eliminar
+  
+    try {
+      // Utilizar updateOne con el operador $pull para eliminar elementos del arreglo 'players'
+      const result = await modeloRooms.updateOne(
+        { code: roomCode },
+        { $pull: { players: { $in: playersToRemove } } }
+      );
+  
+      // Verificar si se realizó la actualización con éxito
+      if (result.modifiedCount > 0) {
+        res.json({ mensaje: `Jugadores eliminados con éxito de la sala con código ${roomCode}` });
+      } else {
+        res.status(404).json({ mensaje: `Sala con código ${roomCode} no encontrada o jugadores no presentes` });
+      }
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+router.get('/', (req, res) => {
     //console.log("Hace get",req);
     res.send('Funciona el get');
 });
