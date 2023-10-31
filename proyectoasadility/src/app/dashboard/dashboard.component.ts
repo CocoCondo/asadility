@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import {catchError} from 'rxjs/operators'; 
+import { of, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +17,8 @@ export class DashboardComponent {
   roomNumber: string = '';
   joinName: string = '';
 
+  constructor(private authService: AuthService, private router: Router){}
+
   showHostForm() {
     this.showHost = true;
     this.showJoin = false;
@@ -24,9 +30,25 @@ export class DashboardComponent {
   }
 
   login() {
-    // Lógica para procesar el login del HOST
     console.log('Login:', this.username, this.password);
-    //FALTA LA LOGICA DEL LOGEO
+    if (this.username && this.password) {
+      this.authService.login(this.username, this.password)
+        .pipe(
+          catchError((error) => {
+            return throwError(() => error);
+          })
+        )
+        .subscribe({
+          next: (res: any) => {
+            console.log(res);
+            console.log("logged in");
+            this.router.navigateByUrl('/');
+          },
+          error: (err: any) => {
+            console.log(err);
+          },
+        });
+    }
   }
 
   join() {
