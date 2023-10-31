@@ -39,12 +39,12 @@ export class DashboardComponent {
           })
         )
         .subscribe({
-          next: (res) => {
+          next: (res: any) => {
             console.log(res);
             console.log("logged in");
             this.router.navigateByUrl('/');
           },
-          error: (err) => {
+          error: (err: any) => {
             console.log(err);
           },
         });

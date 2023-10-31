@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import { modeloAdmins} from '../src/models/admins/index';
 import "dotenv/config";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
@@ -44,7 +45,14 @@ router.post("/register", async(req: Request, res: Response)=>{
 		const hashedPassword = await bcrypt.hash(req.body.password, salt);
     console.log(hashedPassword)
 		const user: User = {name: req.body.name, password: hashedPassword };
-		users.push(user);
+		// users.push(user);
+		
+		//Add to DB
+		const adminInfo = new modeloAdmins(user);
+    adminInfo.save().then(admin => {
+        console.log(admin)
+    })
+
 		res.status(201).send();
 	} catch {
 		res.status(500).send();

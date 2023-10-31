@@ -1,7 +1,6 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import userApi from "./user-api.ts";
 import authentication from "./authentication.ts";
-import adminApi from "./admin-api.ts"
 import mongoose from 'mongoose';
 import bodyParser from "body-parser";
 
@@ -16,12 +15,10 @@ app.use(cors({
 
 const portDB = 3000;
 //Conectar a MongoDB
-mongoose.connect('mongodb://localhost:27017/base_asadility');
+// mongoose.connect('mongodb://localhost:27017/base_asadility');
 
 //Rutas de la API
-//console.log(adminApi);
 app.use("/api", userApi);
-app.use("/api", adminApi);
 app.use(authentication);
 
 // app.get('/', function(req: Request, res: Response) {
