@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'dashboard', title: 'Asadility', component: DashboardComponent },
   { path: '**', title: 'Not found :(', component: PageNotFoundComponent },
   { path: 'lobby', title: 'LOBBY', component: LobbyComponent}
-  { path: 'juego1', title: 'juego1', component: Juego1Component} //
+  //{ path: 'juego1', title: 'juego1', component: Juego1Component} //
 ];
 
 @NgModule({
