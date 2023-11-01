@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="col-md-12 host row">
+        Bienvenido @Username!
+    </div>
+    <br>
+    <a routerLink="/admindashboard" class="back-button">
+        <div class="arrow-left"></div> Volver
+      </a>
+  <div class="col-md-6 offset-md-3 ">
+    <div class="row">
+        
+    <!-- Aquí va el formulario para HOST -->
+    <h1>Creación de actividad</h1>
+    <br>
+    <br>
+    <br>
+
+    <form>
+      <!-- Campos para usuario y contraseña -->
+      <input type="text" placeholder="Título de la actividad" [(ngModel)]="titulo" />
+      <textarea id="descripcion" placeholder="Ingrese una descripcion para la actividad..." [(ngModel)]="descripcion"></textarea>
+      <p>Ingrese una imágen para la actividad *Opcional*</p>
+      <div class="mb-3">
+        <input type="file" class="form-control" aria-label="file example" required [(ngModel)]="img">
+        <div class="invalid-feedback">Example invalid form file feedback</div>
+      </div>
+      <!-- Botón de login -->
+      <button type="button" (click)="crearActividad()">Crear actividad</button>
+    </form>
+  </div>
+</div>
+</div>
