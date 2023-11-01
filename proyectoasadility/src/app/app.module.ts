@@ -12,6 +12,7 @@ import { LobbyComponent } from './lobby/lobby.component';
 
 // Interceptors
 import { AuthinterceptorService } from './authinterceptor.service';
+import { CrearActividadComponent } from './crear-actividad/crear-actividad.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AuthinterceptorService } from './authinterceptor.service';
     PageNotFoundComponent,
     FooterComponent,
     AdminDashboardComponent,
-    LobbyComponent
+    LobbyComponent,
+    CrearActividadComponent
   ],
   imports: [
     BrowserModule,
