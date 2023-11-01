@@ -3,15 +3,6 @@ import { modeloRooms } from './models/rooms';
 
 const router = express.Router();
 
-//Agregar rooms a la DB
-router.post('/rooms', (req, res) => {
-    const roomInfo = new modeloRooms(req.body);
-    roomInfo.save().then(room => {
-        console.log(room)
-    }).catch(error => console.error(error))
-    res.send('room was added to the database');
-});
-
 //Agregar users a un room
 router.patch('/rooms/:code/addPlayers', async (req, res) => {
     const roomCode = req.params.code;
