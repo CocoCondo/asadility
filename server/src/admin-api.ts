@@ -3,7 +3,7 @@ import { modeloAdmins} from '../src/models/admins/index';
 import { modeloRooms } from './models/rooms';
 
 
-const router = express.Router();
+// const router = express.Router();
 
 router.post("/addAdmin", (req, res) => {
     const adminInfo = new modeloAdmins(req.body);
@@ -22,4 +22,7 @@ router.post('/rooms', (req, res) => {
     res.send('room was added to the database');
 });
 
-export default router;
+// export default router;
+
+
+//COMENTADO PORQUE YA ESTA IMPLEMENTADO EN /REGISTER DE AUTENTICACION.TS
