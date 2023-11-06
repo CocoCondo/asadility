@@ -1,70 +1,64 @@
 import express, { Request, Response } from 'express';
-import { modeloAdmins} from '../src/models/admins/index';
+import { modeloAdmins } from '../src/models/admins/index';
 import "dotenv/config";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 const router = express.Router();
 
-router.get('/authmiddleware', authenticateToken, function(req: Request, res: Response) {
-  res.send('Get Autenticado');
+router.get('/authmiddleware', authenticateToken, function (req: Request, res: Response) {
+	res.send('Get Autenticado');
 })
 
-interface User {
-  name: string,
-  password: string
-}
+router.post("/login", async (req: Request, res: Response) => {
 
-let users: User[] = [
-  {
-      name: "Coti",
-      password: "$2b$10$DEYjN1oFGpYue8smhQqdLOsoqeijjnDUK1NVrJp.JOBQon4zFxAYy"
-  }
-];
+	const username = req.body.name;
 
-router.post("/login", async (req: Request, res: Response)=>{
-  let user: User = users.find((u: User) => u.name == req.body.username) as User;
-	if (user == null) return res.status(400).send('Usuario no existe');
 	try {
-		const authenticateUser = await bcrypt.compare(req.body.password, user.password);
-		if (authenticateUser) {
-			const username = req.body.username;
-			const user = { name: username };
-			const accessToken = jwt.sign(user, process.env.ACESS_TOKEN_SECRET!);
-			res.json({accessToken: accessToken});
-    } else {
-			res.send('Contraseña incorrecta para este usuario');
-		}	
-	} catch {
-		res.send(500).send();
+		/*Compara en la BD*/
+		const result = await modeloAdmins.findOne(
+			{ name: username }
+		);
+
+		if (result?.password) {
+			const authenticateUser = await bcrypt.compare(req.body.password, result.password);
+			if (authenticateUser) {
+				const username = req.body.username;
+				const user = { name: username };
+				const accessToken = jwt.sign(user, process.env.ACESS_TOKEN_SECRET!);
+				res.json({ accessToken: accessToken });
+			} else {
+				res.send('Contraseña incorrecta para este usuario');
+			}
+		}
+		else {
+			return res.status(404).send('Usuario no encontrado');
+		}
+	} catch (error){
+		res.sendStatus(500).send(error);
 	}
 });
 
-router.post("/register", async(req: Request, res: Response)=>{
+router.post("/register", async (req: Request, res: Response) => {
 	try {
 		const salt = await bcrypt.genSalt();
 		const hashedPassword = await bcrypt.hash(req.body.password, salt);
-    console.log(hashedPassword)
-		const user: User = {name: req.body.name, password: hashedPassword };
-		// users.push(user);
-		
-		//Add to DB
-		const adminInfo = new modeloAdmins(user);
-    adminInfo.save().then(admin => {
-        console.log(admin)
-    })
-
+		const adminInfo = new modeloAdmins({ name: req.body.name, password: hashedPassword });
+		adminInfo.save().then(admin => {
+			console.log(admin)
+		})
 		res.status(201).send();
-	} catch {
-		res.status(500).send();
-	}	
+	} catch (error) {
+		console.error('Error en el bloque catch:', error);
+		res.status(500).send('Error interno del servidor');
+	 }	 
 });
 
-function authenticateToken(req: any, res: Response, next: ()=> void){
+function authenticateToken(req: any, res: Response, next: () => void) {
 	const authHeader = req.headers['authorization'];
 	const token = authHeader && authHeader.split(' ')[1];
 	if (token == null) return res.sendStatus(401);
 	jwt.verify(token, process.env.ACESS_TOKEN_SECRET!, (err: any, user: any) => {
-		if(err) return res.sendStatus(403);
+		if (err) return res.sendStatus(403);
 		req.user = user;
 		next();
 	})
