@@ -18,8 +18,8 @@ app.use(cors({
 }));
 
 //Rutas de la API
-app.use("/api", userApi);
-app.use("/api", adminApi);
+app.use("/api", roomUserApi);
+app.use("/api", roomAdminApi);
 app.use(autenticacion);
 
 // app.get('/', function(req: Request, res: Response) {
