@@ -11,32 +11,25 @@ import { JugadorService } from '../jugador.service';
   styleUrls: ['./lobby.component.css']
 })
 export class LobbyComponent {
-  juegos: Juego[] = [];      
-  jugadores: Jugador[] = [];   
+  juegos: Juego[] = [];
+  jugadores: Jugador[] = [];
   selectedJuego: Juego = {
     id: 0,
     imagen: "",
     nombre: ""
   }
-  constructor(private juegoService: JuegoService, private jugadorService: JugadorService) { }
+  constructor(private jugadorService: JugadorService) { }
 
-  getJugadores(): void{
-    this.jugadorService.getJugadores()
-      .subscribe(jugadores => {
-        jugadores.results.map((jugador: any) => {
-          let nuevoJugador = {
-            nombre: jugador.nombre,
-          }
-          this.jugadores.push(nuevoJugador)
-        })
-      })
-  }
+  async getJugadores(): Promise<void> {
+    ((await this.jugadorService.getJugadores()).subscribe(jugadores => this.jugadores = jugadores)
+    );
+ }
 
 
 
 
   getJuegos(): void {
-    this.juegoService.getJuegos()
+    /*this.juegoService.getJuegos()
       .subscribe(juegos => {
         juegos.results.map((juego: any) => {
           let nuevoJuego = {
@@ -49,16 +42,17 @@ export class LobbyComponent {
           this.juegos.push(nuevoJuego)
         })
       })
-
+*/
   }
 
 
 
   empezar(): void {
-    
+
   }
 
   ngOnInit(): void {
+    this.getJugadores();
 
   }
 }

@@ -1,14 +1,18 @@
-<h1>Jugadores en el Lobby</h1>
-<div *ngFor="let jugador of jugadores">
-    <div class="tarjeta">
-        {{jugador.nombre}}
+<div class="body">
+    <h1>Jugadores en el Lobby</h1>
+    <div *ngFor="let jugador of jugadores">
+        <div class="tarjeta">
+            {{jugador.nombre}}
+        </div>
     </div>
-</div>
-<div class="juegos" *ngFor="let juego of juegos">
-    <div class="tarjeta">
-        <div>{{juego.imagen}}</div>
-        <div>{{juego.nombre}}</div>
+    <div class="juegos" *ngFor="let juego of juegos">
+        <div class="tarjeta">
+            <div>{{juego.imagen}}</div>
+            <div>{{juego.nombre}}</div>
+        </div>
     </div>
-</div>
+    <div class="contboton">
+        <button (click)="empezar()" class="boton">Empezar</button>
+    </div>
 
-<button (click)="empezar()" >Empezar</button>
+</div>

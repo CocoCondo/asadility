@@ -1,0 +1,25 @@
+.contboton {
+    /*display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* Centra verticalmente el contenido en la parte inferior del contenedor */
+    /*align-items: center;
+    /* Centra horizontalmente el contenido */
+    /*margin-top: auto;
+    /* Empuja el contenido hacia abajo tanto como sea posible */
+    /*height: 100%;*/
+}
+
+.body {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 90vh;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.boton {
+    background-color: #337ab7;
+    color: white;
+}
