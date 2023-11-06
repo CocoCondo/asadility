@@ -1,0 +1,43 @@
+body, html {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .container-fluid {
+    height: 100%;
+  }
+  
+  .row {
+    height: 50%;
+    text-align: center;
+  }
+  
+  .col-md-12 {
+    padding: 20px;
+    color: #fff;
+    height: 100%;
+  }
+  
+  .host {
+    background-color: #5bc0de; /* Color para el lado HOST */
+  }
+
+  .button-container {
+    text-align: center;
+    margin-top: 50px; /* Espacio entre el header y los botones */
+  }
+  
+  .button {
+    margin: 0 20px; /* Espacio horizontal entre los botones */
+    padding: 18px 70px;
+    background-color: #0074d9; /* Color de fondo del botón */
+    color: #fff; /* Color de texto del botón */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #0056b3; /* Color de fondo del botón al pasar el ratón */
+    transform: scale(1.1);
+  }
