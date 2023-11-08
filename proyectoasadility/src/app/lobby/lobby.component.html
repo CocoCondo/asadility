@@ -2,13 +2,13 @@
     <h1>Jugadores en el Lobby</h1>
     <div *ngFor="let jugador of jugadores">
         <div class="tarjeta">
-            {{jugador.nombre}}
+            <p>{{jugador}}</p>
         </div>
     </div>
     <div class="juegos" *ngFor="let juego of juegos">
         <div class="tarjeta">
             <div>{{juego.imagen}}</div>
-            <div>{{juego.nombre}}</div>
+            <p>{{juego.nombre}}</p>
         </div>
     </div>
     <div class="contboton">

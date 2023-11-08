@@ -17,9 +17,27 @@
     height: 90vh;
     flex-direction: column;
     justify-content: flex-start;
+    background-color: #5cb85c;
 }
 
 .boton {
     background-color: #337ab7;
     color: white;
+}
+
+.tarjeta {
+    width: 220px;
+    height: auto;
+    background-color: #5bc0de;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+p{
+    font-size: large;
+    font-weight: bold;
 }

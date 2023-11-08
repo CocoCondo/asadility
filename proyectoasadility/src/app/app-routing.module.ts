@@ -12,9 +12,8 @@ const routes: Routes = [
   { path: 'dashboard', title: 'Asadility', component: DashboardComponent },
   {path:'admindashboard', title:'adminDashboard',component:AdminDashboardComponent},
   {path:'admindashboard/crearactividad', title:'crearActividad', component:CrearActividadComponent},
+  { path: 'lobby/:code', title: 'LOBBY', component: LobbyComponent},
   { path: '**', title: 'Not found :(', component: PageNotFoundComponent },
-
-  { path: 'lobby', title: 'LOBBY', component: LobbyComponent}
   // { path: 'juego1', title: 'juego1', component: Juego1Component}
 ];
 

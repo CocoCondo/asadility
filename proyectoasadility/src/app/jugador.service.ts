@@ -7,14 +7,13 @@ import { Jugador } from './jugador';
   providedIn: 'root'
 })
 export class JugadorService {
-  private url = "http://localhost:8080/jugadores" //hay que poner la direccion a la base de datos (por ejemplo /api/jugadores)
 
   constructor(
     private http: HttpClient,
   ) { }
 
-  async getJugadores(): Promise<Observable<any>> {
-    return this.http.get<Jugador[]>(this.url);
-    
+  async getJugadores(code: string): Promise<Observable<any>> {
+    const url = `http://localhost:8080/api/rooms/${code}/users` //hay que poner la direccion a la base de datos (por ejemplo /api/jugadores)
+    return this.http.get<Jugador[]>(url);
   }
 }

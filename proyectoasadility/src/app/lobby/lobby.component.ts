@@ -3,7 +3,8 @@ import { Juego } from 'src/app/Juego'
 import { JuegoService } from '../juego.service';
 import { Jugador } from '../jugador';
 import { JugadorService } from '../jugador.service';
-
+import { ActivatedRoute } from '@angular/router';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-lobby',
@@ -18,12 +19,12 @@ export class LobbyComponent {
     imagen: "",
     nombre: ""
   }
-  constructor(private jugadorService: JugadorService) { }
+  constructor(private jugadorService: JugadorService, private route: ActivatedRoute) { }
 
-  async getJugadores(): Promise<void> {
-    ((await this.jugadorService.getJugadores()).subscribe(jugadores => this.jugadores = jugadores)
+  /*async getJugadores(param1:string): Promise<void> {
+    ((await this.jugadorService.getJugadores(param1)).subscribe(jugadores => this.jugadores = jugadores)
     );
- }
+ }*/
 
 
 
@@ -51,10 +52,18 @@ export class LobbyComponent {
 
   }
 
-  ngOnInit(): void {
-    this.getJugadores();
+  async ngOnInit(): Promise<void> {
+    let code = '';
+    this.route.paramMap.subscribe(async (params) => {
+      code = params.get('code') || '';
+
+    })
+    const data = await (await this.jugadorService.getJugadores(code)).toPromise();
+    this.jugadores = data.players;
+    console.log('a', this.jugadores)
 
   }
+
 }
 
 
