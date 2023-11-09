@@ -14,9 +14,10 @@ const routes: Routes = [
   {
     path: 'admindashboard', title: 'Admin Dashboard', component: AdminDashboardComponent,
     canActivate: [() => inject(AuthService).isAuthenticated()],
-    children: [
-      { path: 'crearactividad', title: 'Crear actividad', component: CrearActividadComponent },
-    ]
+  },
+  {
+    path: 'admindashboard/crearactividad', title: 'Crear actividad', component: CrearActividadComponent,
+    canActivate: [() => inject(AuthService).isAuthenticated()],
   },
   { path: '**', title: 'Not found :(', component: PageNotFoundComponent },
 

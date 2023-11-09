@@ -18,6 +18,11 @@ body, html {
     padding: 20px;
     color: #110202;
     height: 100%;
+    width: 100%;
+  }
+  
+  .form {
+    width: 100%; /* Ajusta el ancho del formulario al 100% */
   }
   
   .host-btn {
