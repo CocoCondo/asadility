@@ -3,7 +3,8 @@ import { Juego } from 'src/app/Juego'
 import { JuegoService } from '../juego.service';
 import { Jugador } from '../jugador';
 import { JugadorService } from '../jugador.service';
-
+import { ActivatedRoute } from '@angular/router';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-lobby',
@@ -11,32 +12,25 @@ import { JugadorService } from '../jugador.service';
   styleUrls: ['./lobby.component.css']
 })
 export class LobbyComponent {
-  juegos: Juego[] = [];      
-  jugadores: Jugador[] = [];   
+  juegos: Juego[] = [];
+  jugadores: Jugador[] = [];
   selectedJuego: Juego = {
     id: 0,
     imagen: "",
     nombre: ""
   }
-  constructor(private juegoService: JuegoService, private jugadorService: JugadorService) { }
+  constructor(private jugadorService: JugadorService, private route: ActivatedRoute) { }
 
-  getJugadores(): void{
-    this.jugadorService.getJugadores()
-      .subscribe(jugadores => {
-        jugadores.results.map((jugador: any) => {
-          let nuevoJugador = {
-            nombre: jugador.nombre,
-          }
-          this.jugadores.push(nuevoJugador)
-        })
-      })
-  }
+  /*async getJugadores(param1:string): Promise<void> {
+    ((await this.jugadorService.getJugadores(param1)).subscribe(jugadores => this.jugadores = jugadores)
+    );
+ }*/
 
 
 
 
   getJuegos(): void {
-    this.juegoService.getJuegos()
+    /*this.juegoService.getJuegos()
       .subscribe(juegos => {
         juegos.results.map((juego: any) => {
           let nuevoJuego = {
@@ -49,18 +43,27 @@ export class LobbyComponent {
           this.juegos.push(nuevoJuego)
         })
       })
-
+*/
   }
 
 
 
   empezar(): void {
-    
-  }
-
-  ngOnInit(): void {
 
   }
+
+  async ngOnInit(): Promise<void> {
+    let code = '';
+    this.route.paramMap.subscribe(async (params) => {
+      code = params.get('code') || '';
+
+    })
+    const data = await (await this.jugadorService.getJugadores(code)).toPromise();
+    this.jugadores = data.players;
+    console.log('a', this.jugadores)
+
+  }
+
 }
 
 
