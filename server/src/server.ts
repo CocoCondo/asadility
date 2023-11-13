@@ -22,9 +22,17 @@ app.use("/api", roomUserApi);
 app.use("/api", roomAdminApi);
 app.use(autenticacion);
 
-// app.get('/', function(req: Request, res: Response) {
-//     res.send('Hello World')
-// });
+/*app.get('/', function(req: Request, res: Response) {
+    res.send('Hello World')
+});*/
+
+/*app.use("/jugadores", async function (req, res) {
+    const response = await fetch("http://localhost:3000/users");  //hay que cambiar este endpoint al del mongo
+    const data = await response.json();
+    console.log('funciona', data)
+    console.log(response)
+    res.send(data)
+}) */      //json server. funciona
 
 var server = app.listen(8080, function () {
     console.log("Backend Application listening at http://localhost:8080")
