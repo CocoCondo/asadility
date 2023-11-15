@@ -104,11 +104,6 @@ router.delete('/rooms/:code/removePlayers', async (req, res) => {
     }
   });
 
-router.get('/', (req, res) => {
-    //console.log("Hace get",req);
-    res.send('Funciona el get');
-});
-
 router.get('/rooms/:code/users', async function(req, res) {
     const roomCode = req.params.code;
   try{
