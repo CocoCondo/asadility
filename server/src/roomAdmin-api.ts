@@ -9,7 +9,7 @@ router.post('/rooms', (req, res) => {
     const code = crypto.randomBytes(10).toString('hex');
     const roomInfo = new modeloRooms({code: code, players: req.body.players, actividades: req.body.actividades});
     roomInfo.save().then(room => {
-        res.send('room was added to the database');
+        res.json({code: code});
     }).catch(error => console.error(error))
 });
 
