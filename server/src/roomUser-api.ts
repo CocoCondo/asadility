@@ -62,4 +62,21 @@ router.get('/', (req, res) => {
     res.send('Funciona el get');
 });
 
+router.get('/rooms/:code/users', async function(req, res) {
+    const roomCode = req.params.code;
+  try{
+    const room = await modeloRooms.findOne({ code:roomCode });
+
+    if (!room) {
+      return res.status(404).json({mensaje: `Sala con código ${roomCode} no encontrada`})
+    }
+
+    const players = room.players;
+
+    res.json({players});
+  }catch (error: any){
+    res.status(500).json({error: error.message})
+  }
+})
+
 export default router;
