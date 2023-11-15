@@ -6,19 +6,19 @@ import bcrypt from 'bcrypt';
 const router = express.Router();
 
 router.get('/authmiddleware', authenticateToken, function (req: Request, res: Response) {
-	res.send('Get Autenticado');
-})
+    // Si se llega a este punto, la autenticación fue exitosa
+    res.status(200).json({ Autenticado: true, status: 200 });
+});
 
 router.post("/login", async (req: Request, res: Response) => {
 
-	const username = req.body.name;
+	const username = req.body.username;
 
 	try {
 		/*Compara en la BD*/
 		const result = await modeloAdmins.findOne(
-			{ name: username }
+			{ username: username }
 		);
-
 		if (result?.password) {
 			const authenticateUser = await bcrypt.compare(req.body.password, result.password);
 			if (authenticateUser) {
@@ -31,6 +31,7 @@ router.post("/login", async (req: Request, res: Response) => {
 			}
 		}
 		else {
+			console.error("Error 404");
 			return res.status(404).send('Usuario no encontrado');
 		}
 	} catch (error){

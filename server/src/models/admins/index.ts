@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 //Definir un esquema
 const schemaAdmins = new mongoose.Schema({
-    name: String,
+    username: String,
     password: String
 });
 

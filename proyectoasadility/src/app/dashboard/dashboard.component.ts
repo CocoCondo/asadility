@@ -40,9 +40,8 @@ export class DashboardComponent {
         )
         .subscribe({
           next: (res: any) => {
-            console.log(res);
             console.log("logged in");
-            this.router.navigateByUrl('/');
+            this.router.navigateByUrl('/admindashboard');
           },
           error: (err: any) => {
             console.log(err);
