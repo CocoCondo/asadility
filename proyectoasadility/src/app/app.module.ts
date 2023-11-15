@@ -32,11 +32,11 @@ import { CrearActividadComponent } from './crear-actividad/crear-actividad.compo
   ],
   providers: [
     // comentado para que no se active la intercepcion de requests con jwt
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthinterceptorService,
-    //   multi: true
-    // }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthinterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

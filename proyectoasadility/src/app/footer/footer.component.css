@@ -2,8 +2,8 @@
     text-align: center;
     padding: 5px;
     background-color: #f8f9fa; /* Color de fondo */
-    position: fixed;
-    bottom: 0;
+    position: sticky;
+    bottom: auto;
     width: 100%;
   }
   
