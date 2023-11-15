@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 //Definir un esquema
 const schemaActivities = new mongoose.Schema({
-    string: String
+    name: String,
 });
 
 //Crear un modelo basado en el esquema
