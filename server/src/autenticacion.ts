@@ -19,6 +19,8 @@ router.post("/login", async (req: Request, res: Response) => {
 		const result = await modeloAdmins.findOne(
 			{ username: username }
 		);
+		console.log(await modeloAdmins.find());
+		console.log("LOGIN: Usuario encontrado: ",result?.username);
 		if (result?.password) {
 			const authenticateUser = await bcrypt.compare(req.body.password, result.password);
 			if (authenticateUser) {
@@ -27,7 +29,7 @@ router.post("/login", async (req: Request, res: Response) => {
 				const accessToken = jwt.sign(user, process.env.ACESS_TOKEN_SECRET!);
 				res.json({ accessToken: accessToken });
 			} else {
-				res.send('Contraseña incorrecta para este usuario');
+				res.send('Credenciales incorrectas');
 			}
 		}
 		else {
@@ -54,7 +56,7 @@ router.post("/register", async (req: Request, res: Response) => {
 	 }	 
 });
 
-function authenticateToken(req: any, res: Response, next: () => void) {
+export function authenticateToken(req: any, res: Response, next: () => void) {
 	const authHeader = req.headers['authorization'];
 	const token = authHeader && authHeader.split(' ')[1];
 	if (token == null) return res.sendStatus(401);
