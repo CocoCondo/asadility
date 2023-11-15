@@ -3,7 +3,6 @@ import roomUserApi from "./roomUser-api.ts";
 import roomAdminApi from "./roomAdmin-api.ts"
 import activityApi from "./activity-api.ts";
 import autenticacion from "./autenticacion.ts";
-import actividades from "./actividades-api.ts"
 import connectDB from './db-connect.ts';
 import mongoose from 'mongoose';
 import bodyParser from "body-parser";
