@@ -2,7 +2,7 @@ import express from 'express';
 import roomUserApi from "./roomUser-api.ts";
 import roomAdminApi from "./roomAdmin-api.ts"
 import activityApi from "./activity-api.ts";
-import autenticacion from "./autenticacion.ts";
+import autenticacion, {authenticateToken} from "./autenticacion.ts";
 import connectDB from './db-connect.ts';
 import mongoose from 'mongoose';
 import bodyParser from "body-parser";
@@ -19,9 +19,9 @@ app.use(cors({
 }));
 
 //Rutas de la API
-app.use("/api", roomUserApi);
-app.use("/api", roomAdminApi);
-app.use("/api", activityApi);
+app.use(roomUserApi);
+app.use("/api", roomAdminApi, authenticateToken);
+app.use("/api", activityApi, authenticateToken);
 app.use(autenticacion);
 
 var server = app.listen(8080, function () {
