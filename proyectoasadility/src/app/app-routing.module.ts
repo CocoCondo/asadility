@@ -10,6 +10,7 @@ import { AuthService } from './auth.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', title: 'Asadility', component: DashboardComponent },
   {
     path: 'admindashboard', title: 'Admin Dashboard', component: AdminDashboardComponent,
