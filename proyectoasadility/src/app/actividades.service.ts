@@ -18,4 +18,9 @@ export class ActividadesService {
     const response = this.http.get<any>(urlFinal)
     return response;
   }
+
+  crearActividad(datosActividad: any): Observable<any> {
+    const urlFinal = `${this.url}/crear`; // Ajusta la ruta según tu backend
+    return this.http.post<any>(urlFinal, datosActividad);
+  }
 }

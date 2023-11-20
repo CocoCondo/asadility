@@ -36,11 +36,19 @@ router.get('/rooms/:code/actividades', async function(req: Request, res: Respons
   })
   
   // Agregar actividad
-  router.post('/actividades', function(req: Request, res: Response) {
-    const newActividad = new modeloActivity(req.body);
-      newActividad.save().then(actividad => {
-        res.send('Actividad agregada');
-      }).catch(error => res.status(500).json({ error: error.message }))
+  router.post('/actividades/crear', function(req, res) {
+    const newActividad = new modeloActivity({
+      name:req.body.titulo,
+      description:req.body.descripcion,
+      img:req.body.img
+
+    
+    });
+    newActividad.save()
+      .then(actividad => {
+        res.status(201).json({ mensaje: 'Actividad agregada con éxito', actividad: actividad });
+      })
+      .catch(error => res.status(500).json({ error: error.message }));
   });
 
 export default router;
