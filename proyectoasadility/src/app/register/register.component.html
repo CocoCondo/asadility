@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="col-md-12 host row">
+      Bienvenido!
+    </div>
+    <br>
+    <a routerLink="/dashboard" class="back-button">
+      <div class="arrow-left"></div> Volver
+    </a>
+    <div class="col-md-6 offset-md-3 ">
+      <div class="row">
+  
+        <!-- Aquí va el formulario para HOST -->
+        <h1>Registro de usuario</h1>
+        <br>
+        <br>
+        <br>
+  
+        <form>
+          <input type="text" placeholder="Elija un nombre de usuario..." [(ngModel)]="username" [ngModelOptions]="{standalone: true}" />
+          <input type="text" placeholder="Elija una contraseña..." [(ngModel)]="password" [ngModelOptions]="{standalone: true}" />
+          <p>*Revise sus datos, y recuerde su contraseña*</p>
+          <button type="button" (click)='crearNuevoUsuario()'>Crear usuario</button>
+        </form>
+      </div>
+    </div>
+  </div>

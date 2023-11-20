@@ -7,10 +7,12 @@ import { LobbyComponent } from './lobby/lobby.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { CrearActividadComponent } from './crear-actividad/crear-actividad.component';
 import { AuthService } from './auth.service';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: 'register', title:'register', component:RegisterComponent},
   { path: 'dashboard', title: 'Asadility', component: DashboardComponent },
   {
     path: 'admindashboard', title: 'Admin Dashboard', component: AdminDashboardComponent,
