@@ -1,16 +1,16 @@
 import express from 'express';
 import { modeloRooms } from './models/rooms';
-
+var crypto = require("crypto");
 
  const router = express.Router();
 
 //Agregar rooms a la DB
 router.post('/rooms', (req, res) => {
-    const roomInfo = new modeloRooms(req.body);
+    const code = crypto.randomBytes(10).toString('hex');
+    const roomInfo = new modeloRooms({code: code, players: req.body.players, actividades: req.body.actividades});
     roomInfo.save().then(room => {
-        console.log(room)
+        res.json({code: code});
     }).catch(error => console.error(error))
-    res.send('room was added to the database');
 });
 
 export default router;

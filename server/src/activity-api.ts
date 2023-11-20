@@ -20,7 +20,7 @@ router.get('/actividades',  async (req, res) => {
 });
 
 // Obtener lista de actividdes de una propuesta
-router.get('rooms/:code/actividades', async function(req: Request, res: Response) {
+router.get('/rooms/:code/actividades', async function(req: Request, res: Response) {
     try{
       const roomCode = req.params.code;
       const room = await modeloRooms.findOne({ code: roomCode });
