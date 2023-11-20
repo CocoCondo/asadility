@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { shareReplay, map } from 'rxjs/operators'
+import { Observable } from 'rxjs';
 
 interface AuthResult {
   accessToken: string
@@ -10,6 +11,9 @@ interface AuthResult {
   providedIn: 'root'
 })
 export class AuthService {
+  private url = "http://localhost:8080";
+
+  
 
   constructor(private http: HttpClient) {
   }
@@ -56,5 +60,10 @@ export class AuthService {
         }
       );
     });
+  }
+
+  crearUsuario(datosUsuario: any): Observable<any> {
+    const urlFinal = `${this.url}/register`; // Ajusta la ruta según tu backend
+    return this.http.post<any>(urlFinal, datosUsuario);
   }
 }

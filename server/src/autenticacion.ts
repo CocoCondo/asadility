@@ -43,9 +43,10 @@ router.post("/login", async (req: Request, res: Response) => {
 
 router.post("/register", async (req: Request, res: Response) => {
 	try {
+		console.log(req.body.name)
 		const salt = await bcrypt.genSalt();
 		const hashedPassword = await bcrypt.hash(req.body.password, salt);
-		const adminInfo = new modeloAdmins({ name: req.body.name, password: hashedPassword });
+		const adminInfo = new modeloAdmins({ username: req.body.username, password: hashedPassword });
 		adminInfo.save().then(admin => {
 			console.log(admin)
 		})

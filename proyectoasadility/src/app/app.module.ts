@@ -13,6 +13,7 @@ import { LobbyComponent } from './lobby/lobby.component';
 // Interceptors
 import { AuthinterceptorService } from './authinterceptor.service';
 import { CrearActividadComponent } from './crear-actividad/crear-actividad.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CrearActividadComponent } from './crear-actividad/crear-actividad.compo
     FooterComponent,
     AdminDashboardComponent,
     LobbyComponent,
-    CrearActividadComponent
+    CrearActividadComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
