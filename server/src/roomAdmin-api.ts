@@ -12,9 +12,10 @@ router.post('/rooms', async function(req, res) {
     const code = crypto.randomBytes(10).toString('hex');
     let actividadesIds = req.body.actividades;
     let actividades: Activity[] = [];
-    actividadesIds.forEach(async function(activitId: String) {
-        const dbActividad: any = await modeloActivity.findOne({ id: activitId });
+    actividadesIds.forEach(async function(actividadId: String) {
+        const dbActividad: any = await modeloActivity.findOne({ id: actividadId });
         let actividad: Activity = {
+            id: actividadId,
             name: dbActividad.name,
             description: dbActividad.description,
             img: dbActividad.img,
