@@ -1,4 +1,5 @@
 import express from 'express';
+var mongo = require('mongodb');
 import { modeloRooms } from './models/rooms';
 import { modeloActivity } from './models/activities';
 import { Activity } from './activity';
@@ -13,7 +14,7 @@ router.post('/rooms', async function(req, res) {
     let actividadesIds = req.body.actividades;
     let actividades: Activity[] = [];
     actividadesIds.forEach(async function(actividadId: String) {
-        const dbActividad: any = await modeloActivity.findOne({ id: actividadId });
+        const dbActividad: any = await modeloActivity.findById(new mongo.ObjectID(actividadId));
         let actividad: Activity = {
             id: actividadId,
             name: dbActividad.name,
