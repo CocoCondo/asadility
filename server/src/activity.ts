@@ -1,5 +1,5 @@
 export interface Activity {
-  id: String,
+  id: number,
   name: String,
   description:String,
   img:String,

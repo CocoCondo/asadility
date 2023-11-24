@@ -12,22 +12,30 @@ var crypto = require("crypto");
 router.post('/rooms', async function(req, res) {
     const code = crypto.randomBytes(10).toString('hex');
     let actividadesIds = req.body.actividades;
-    let actividades: Activity[] = [];
-    actividadesIds.forEach(async function(actividadId: String) {
-        const dbActividad: any = await modeloActivity.findById(new mongo.ObjectID(actividadId));
-        let actividad: Activity = {
-            id: actividadId,
-            name: dbActividad.name,
-            description: dbActividad.description,
-            img: dbActividad.img,
-            votes: 0
-        }
-        actividades.push(actividad);
-    });
-    const roomInfo = new modeloRooms({code: code, players: [], actividades: actividades});
-    roomInfo.save().then(room => {
-        res.json({code: code});
-    }).catch(error => console.error(error))
+
+    try {
+        let actividades = await Promise.all(
+            actividadesIds.map(async (actividadId: String, index: number) => {
+                const dbActividad: any = await modeloActivity.findById(new mongo.ObjectId(actividadId));
+                return {
+                    id: index,
+                    name: dbActividad.name,
+                    description: dbActividad.description,
+                    img: dbActividad.img,
+                    votes: 0
+                };
+            })
+        );
+
+        const roomInfo = new modeloRooms({ code: code, players: [], actividades: actividades });
+        await roomInfo.save();
+        res.json({ code: code });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
 });
+
 
 export default router;
