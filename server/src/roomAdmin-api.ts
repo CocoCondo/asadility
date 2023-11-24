@@ -2,7 +2,6 @@ import express from 'express';
 var mongo = require('mongodb');
 import { modeloRooms } from './models/rooms';
 import { modeloActivity } from './models/activities';
-import { Activity } from './activity';
 var crypto = require("crypto");
 
  const router = express.Router();
