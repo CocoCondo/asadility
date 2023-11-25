@@ -1,5 +1,7 @@
 export interface Juego{
-    id: number;
-    imagen: string;
-    nombre: string;
+    id: number,
+    name: string,
+    description:string,
+    img:string,
+    votes: number
 }

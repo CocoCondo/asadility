@@ -14,6 +14,8 @@ import { LobbyComponent } from './lobby/lobby.component';
 import { AuthinterceptorService } from './authinterceptor.service';
 import { CrearActividadComponent } from './crear-actividad/crear-actividad.component';
 import { RegisterComponent } from './register/register.component';
+import { VotacionComponent } from './votacion/votacion.component';
+import { ResultadosComponent } from './resultados/resultados.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { RegisterComponent } from './register/register.component';
     AdminDashboardComponent,
     LobbyComponent,
     CrearActividadComponent,
-    RegisterComponent
+    RegisterComponent,
+    VotacionComponent,
+    ResultadosComponent
   ],
   imports: [
     BrowserModule,

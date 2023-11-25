@@ -2,22 +2,27 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import {catchError} from 'rxjs/operators'; 
-import { of, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
+import { SocketService } from '../socket.service';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit  {
   showHost = false;
   showJoin = false;
+  showLobby = false;
+  showVoting = false;
+  showResults = false;
   username: string = '';
   password: string = '';
   roomNumber: string = '';
   joinName: string = '';
 
-  constructor(private authService: AuthService, private router: Router){}
+  constructor(private authService: AuthService, private socketService: SocketService, private router: Router){}
 
   showHostForm() {
     this.showHost = true;
@@ -51,9 +56,27 @@ export class DashboardComponent {
   }
 
   join() {
-    // Lógica para unirse a la sala (JOIN)
-    console.log('Join Room:', this.roomNumber, 'Name:', this.joinName);
-    //FALTA LA LOGICA DE ENTRAR AL ROOM
-    //Hacer ruteo
+    this.socketService.joinRoom(this.roomNumber, this.joinName);
+    this.showHost = false;
+    this.showJoin = false;
+    this.showLobby = true;
   }
+
+  start = (): void => {
+    this.showHost = false;
+    this.showJoin = false;
+    this.showLobby = false;
+    this.showVoting = true;
+    this.socketService.startVote(this.roomNumber);
+    }
+
+  ngOnInit() {
+    this.socketService.getEnd().subscribe((roomId: string) => {
+      this.showHost = false;
+      this.showJoin = false;
+      this.showVoting = false;
+      this.showResults = true;
+    });
+  }
+
 }
