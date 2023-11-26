@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <div class="col-md-12 host row">
+      Bienvenido!
+    </div>
+    <br>
+    <a routerLink="/admindashboard" class="back-button">
+      <div class="arrow-left"></div> Volver
+    </a>
+    <div class="col-md-6 offset-md-3 ">
+      <div class="row">
+  
+        <!-- Aquí va el formulario para HOST -->
+        <h1>Creación de sala de juego</h1>
+        <br>
+        <br>
+        <br>
+
+        <form>
+            <div *ngFor="let actividad of checkeados; let i = index;">
+                <input type="checkbox" name="actividad{{actividad.id}}" [(ngModel)]="checkeados[i].checked">
+                <label for="actividad{{actividad.id}}">{{actividad.name}}</label>
+            </div>
+            <button type="button" (click)="crearSala()">Crear sala</button>
+        </form>
+      </div>
+    </div>
+  </div>
