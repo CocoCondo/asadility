@@ -19,8 +19,6 @@ router.post("/login", async (req: Request, res: Response) => {
 		const result = await modeloAdmins.findOne(
 			{ username: username }
 		);
-		console.log(await modeloAdmins.find());
-		console.log("LOGIN: Usuario encontrado: ",result?.username);
 		if (result?.password) {
 			const authenticateUser = await bcrypt.compare(req.body.password, result.password);
 			if (authenticateUser) {
@@ -43,12 +41,11 @@ router.post("/login", async (req: Request, res: Response) => {
 
 router.post("/register", async (req: Request, res: Response) => {
 	try {
-		console.log(req.body.name)
 		const salt = await bcrypt.genSalt();
 		const hashedPassword = await bcrypt.hash(req.body.password, salt);
 		const adminInfo = new modeloAdmins({ username: req.body.username, password: hashedPassword });
 		adminInfo.save().then(admin => {
-			console.log(admin)
+			// console.log(admin)
 		})
 		res.status(201).send();
 	} catch (error) {

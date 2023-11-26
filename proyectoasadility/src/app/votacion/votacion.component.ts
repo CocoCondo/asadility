@@ -11,7 +11,7 @@ import { Juego } from '../Juego';
 export class VotacionComponent implements OnInit{
 
   @Input() roomId: string = "";
-  actividad: Juego = {_id: 0, name: "", description: "", img: "", votes: 0};
+  actividad: Juego = {_id: 0, name: "cargando...", description: "El juego esta por comenzar", img: "https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca.gif", votes: 0};
   
   constructor(private socketService: SocketService) { }
 

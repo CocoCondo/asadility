@@ -63,12 +63,8 @@ export class DashboardComponent implements OnInit  {
   }
 
   start = (): void => {
-    this.showHost = false;
-    this.showJoin = false;
-    this.showLobby = false;
-    this.showVoting = true;
     this.socketService.startVote(this.roomNumber);
-    }
+  }
 
   ngOnInit() {
     this.socketService.getEnd().subscribe((roomId: string) => {
@@ -76,6 +72,13 @@ export class DashboardComponent implements OnInit  {
       this.showJoin = false;
       this.showVoting = false;
       this.showResults = true;
+    });
+
+    this.socketService.getStartVote(this.roomNumber).subscribe((roomId: string) => {
+      this.showHost = false;
+      this.showJoin = false;
+      this.showLobby = false;
+      this.showVoting = true;
     });
   }
 

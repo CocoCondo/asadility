@@ -4,12 +4,10 @@ import { modeloRooms } from './models/rooms';
 
 const router = express.Router();
 
-// Obtener lista de actividdes del sistema
 router.get('/actividades',  async (req, res) => {
     try {
         const actividades = await modeloActivity.find();
 
-        // Verificar si se encontró la sala
         if (!actividades) {
             return res.status(404).json({ mensaje: `Actividades no encontradas` });
         }
@@ -19,7 +17,6 @@ router.get('/actividades',  async (req, res) => {
     }
 });
 
-// Obtener lista de actividdes de una propuesta
 router.get('/rooms/:code/actividades', async function(req: Request, res: Response) {
     try{
       const roomCode = req.params.code;
@@ -35,7 +32,6 @@ router.get('/rooms/:code/actividades', async function(req: Request, res: Respons
     }
   })
   
-  // Agregar actividad
   router.post('/actividades/crear', function(req, res) {
     const newActividad = new modeloActivity({
       name:req.body.titulo,

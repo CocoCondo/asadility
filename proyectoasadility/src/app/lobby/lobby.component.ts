@@ -11,6 +11,7 @@ import { SocketService } from '../socket.service';
 
 export class LobbyComponent implements OnInit {
   jugadores: Jugador[] = [];
+  isHost: boolean = false;
 
   @Input() start!: () => void;
 
@@ -22,7 +23,10 @@ export class LobbyComponent implements OnInit {
 
   ngOnInit() {
     this.socketService.getPlayers().subscribe((players: Jugador[]) => {
-    this.jugadores = players;
+      this.jugadores = players;
+      if(players.length == 1){
+        this.isHost = true;
+      }
     });
   }
 

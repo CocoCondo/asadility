@@ -3,26 +3,40 @@
       Bienvenido!
     </div>
     <br>
-    <a routerLink="/admindashboard" class="back-button">
+    <a routerLink="/dashboard" class="back-button">
       <div class="arrow-left"></div> Volver
     </a>
-    <div class="col-md-6 offset-md-3 ">
-      <div class="row">
+    <div *ngIf="!roomCode; else elseBlock">
+      <div class="col-md-6 offset-md-3 ">
+        <div class="row">
+    
+          <!-- Aquí va el formulario para HOST -->
+          <h1>Creación de sala de juego</h1>
+          <br>
+          <p>Seleccione qué actividades quiere que formen parte de su sala:</p>
+          <br>
+          <br>
   
-        <!-- Aquí va el formulario para HOST -->
-        <h1>Creación de sala de juego</h1>
-        <br>
-        <p>Seleccione qué actividades quiere que formen parte de su sala:</p>
-        <br>
-        <br>
-
-        <form>
-            <div *ngFor="let actividad of checkeados; let i = index;">
-                <input type="checkbox" name="actividad{{actividad.id}}" [(ngModel)]="checkeados[i].checked">
-                <label for="actividad{{actividad.id}}">{{actividad.name}}</label>
-            </div>
-            <button type="button" (click)="crearSala()">Crear sala</button>
-        </form>
+          <form>
+              <div *ngFor="let actividad of checkeados; let i = index;">
+                  <input type="checkbox" name="actividad{{actividad.id}}" [(ngModel)]="checkeados[i].checked">
+                  <label for="actividad{{actividad.id}}">{{actividad.name}}</label>
+              </div>
+              <button type="button" (click)="crearSala()">Crear sala</button>
+          </form>
+  
+        </div>
       </div>
     </div>
+
+    <ng-template #elseBlock>
+      <div class="row text-center">
+        <h4>Usa este codigo para entrar a tu sala:</h4>
+        <h1>
+          {{roomCode}}
+        </h1>
+        <h6>Compartelo con tus amigos para que puedan entrar tambien</h6>
+      </div>
+    </ng-template>
+
   </div>

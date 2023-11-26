@@ -20,7 +20,7 @@ export class ActividadesService {
   }
 
   crearActividad(datosActividad: any): Observable<any> {
-    const urlFinal = `${this.url}/crear`; // Ajusta la ruta según tu backend
+    const urlFinal = `${this.url}/crear`;
     return this.http.post<any>(urlFinal, datosActividad);
   }
 }

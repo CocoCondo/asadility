@@ -14,7 +14,6 @@ var app = express();
 app.use(express.json());
 app.use(bodyParser.json());
 
-//Inicialización del SocketIO
 const httpServer = createServer(app);
 const io = require("socket.io")(httpServer, {
     cors: { origin: "*" },
@@ -42,13 +41,14 @@ io.on("connection", (socket: any) => {
 
     socket.on("startVote",  async function(data: any) {
         let roomId = data.roomId
+        io.to(roomId).emit("startVote");
         const room = await modeloRooms.findOne({ code:roomId });
         let actividades: Activity[] = room?.actividades || [];
         let index = 0;
         const intervalId = setInterval(() => {
             if (index < actividades.length) {
             const a = actividades[index];
-            io.emit("nextAvtivity", a);
+            io.to(roomId).emit("nextAvtivity", a);
             index++;
             } else {
             clearInterval(intervalId);
@@ -69,11 +69,22 @@ io.on("connection", (socket: any) => {
             }
         );
     });
+
+    socket.on("end", async function(data: any) {
+        const roomId = data.roomId;
+        await modeloRooms.updateOne(
+            { code: roomId },
+            {
+                $set: {
+                    'players': [],
+                },
+            }
+        );
+    });
 });
 
 
 httpServer.listen(socketPort);
-//Fin Inicialización del Socket IO
 
 connectDB();
 

@@ -10,7 +10,6 @@ export class PageNotFoundComponent {
   constructor(private router: Router) { }
 
   goToHome() {
-    // Navegar a la página principal, ajusta la ruta según tu configuración
     this.router.navigate(['/']);
   }
 }

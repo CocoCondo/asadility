@@ -1,26 +1,20 @@
 <div class="container-fluid">
     <div *ngIf="!showLobby && !showVoting && !showResults " class="row">
-      <!-- Lado Izquierdo - HOST -->
       <div class="col-md-6 host-btn" (click)="showHostForm()">
         HOST
       </div>
   
-      <!-- Lado Derecho - JOIN -->
       <div class="col-md-6 join-btn" (click)="showJoinForm()">
         JOIN
       </div>
     </div>
   
-    <!-- Formulario para HOST -->
     <div *ngIf="showHost" class="row">
       <div class="col-md-6 offset-md-3">
-        <!-- Aquí va el formulario para HOST -->
         <form>
-          <!-- Campos para usuario y contraseña -->
           <input type="text" placeholder="Usuario" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
           <input type="password" placeholder="Contraseña" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
           
-          <!-- Botón de login -->
           <button type="button" (click)="login()">Login</button>
         </form>
         <a routerLink="/register" class="back-button">
@@ -29,16 +23,12 @@
       </div>
     </div>
   
-    <!-- Formulario para JOIN -->
     <div *ngIf="showJoin" class="row">
       <div class="col-md-6 offset-md-3">
-        <!-- Aquí va el formulario para JOIN -->
         <form>
-          <!-- Campos para número de room y nombre -->
           <input type="text" placeholder="Número de Sala" [(ngModel)]="roomNumber" [ngModelOptions]="{standalone: true}">
           <input type="text" placeholder="Nombre a mostrar" [(ngModel)]="joinName" [ngModelOptions]="{standalone: true}">
           
-          <!-- Botón de join -->
           <button type="button" (click)="join()">Ingresar</button>
         </form>
       </div>
@@ -52,7 +42,6 @@
   <div *ngIf="showVoting" class="row">
     <app-votacion [roomId]="roomNumber"></app-votacion>
   </div>
-
 
   <div *ngIf="showResults" class="row">
     <app-resultados></app-resultados>
