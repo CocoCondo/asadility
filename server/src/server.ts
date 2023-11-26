@@ -41,13 +41,14 @@ io.on("connection", (socket: any) => {
 
     socket.on("startVote",  async function(data: any) {
         let roomId = data.roomId
+        io.to(roomId).emit("startVote");
         const room = await modeloRooms.findOne({ code:roomId });
         let actividades: Activity[] = room?.actividades || [];
         let index = 0;
         const intervalId = setInterval(() => {
             if (index < actividades.length) {
             const a = actividades[index];
-            io.emit("nextAvtivity", a);
+            io.to(roomId).emit("nextAvtivity", a);
             index++;
             } else {
             clearInterval(intervalId);

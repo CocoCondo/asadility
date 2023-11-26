@@ -5,14 +5,11 @@
             <p>{{jugador.name}}</p>
         </div>
     </div>
-    <!-- <div class="juegos" *ngFor="let juego of juegos">
-        <div class="tarjeta">
-            <div>{{juego.img}}</div>
-            <p>{{juego.name}}</p>
+
+    <div *ngIf="isHost" class="row">
+        <div class="contboton">
+            <button (click)="empezar()" class="boton">Empezar</button>
         </div>
-    </div> -->
-    <div class="contboton">
-        <button (click)="empezar()" class="boton">Empezar</button>
-    </div>
+      </div>
 
 </div>

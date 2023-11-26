@@ -30,6 +30,16 @@ export class SocketService {
     this.socket.emit('startVote', {roomId: roomId});
   }
 
+  getStartVote(roomId: string){
+    let observable = new Observable<any>(observer => {
+      this.socket.on('startVote', (data: any) => {
+        observer.next(data);
+      });
+      return () => { console.log("disconnected"); this.socket.disconnect(); };  
+    });
+    return observable;
+  }
+
   getActivity(){
     let observable = new Observable<any>(observer => {
       this.socket.on('nextAvtivity', (data: any) => {

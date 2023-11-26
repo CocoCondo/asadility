@@ -60,8 +60,8 @@ export class CrearRoomComponent implements OnInit {
             this.roomService.crearRoom(juegosDeSala).subscribe(
                 (respuesta) => {
                     console.log('Sala creada con éxito', respuesta);
-                    alert('¡Sala creada con éxito!');
-                    this.router.navigateByUrl('/admindashboard'); //editar con la ruta que se crea necesaria
+                    alert('¡Sala creada con éxito! Ahora puedes ingresar a tu sala desde el Dashboard');
+                    this.router.navigateByUrl('/dashboard');
                   },
                   (error) => {
                     console.error('Error al crear la sala', error);
