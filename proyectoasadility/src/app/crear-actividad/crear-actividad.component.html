@@ -26,6 +26,9 @@
         </div>
         <button type="button" (click)="crearNuevaActividad()">Crear actividad</button>
       </form>
+      <div *ngIf="mostrarMensaje" class="mensaje-emergente">
+        {{ mensaje }}
+      </div>
     </div>
   </div>
 </div>

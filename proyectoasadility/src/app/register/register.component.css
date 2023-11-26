@@ -118,4 +118,13 @@ body, html {
   .back-button:hover {
     background-color: #286090; /* Color de fondo en hover */
   }
+
+  .mensaje-emergente {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 auto;
+  }
   
