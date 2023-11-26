@@ -9,7 +9,6 @@ var crypto = require("crypto");
 router.post('/rooms', async function(req, res) {
     const code = crypto.randomBytes(10).toString('hex');
     let actividadesIds = req.body;
-    console.log("Body: " + req.body);
 
     try {
         let actividades = await Promise.all(
