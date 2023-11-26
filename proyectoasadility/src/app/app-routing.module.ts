@@ -27,8 +27,6 @@ const routes: Routes = [
     canActivate: [() => inject(AuthService).isAuthenticated()],
   },
   { path: '**', title: 'Not found :(', component: PageNotFoundComponent },
-
-  // { path: 'juego1', title: 'juego1', component: Juego1Component}
 ];
 
 @NgModule({

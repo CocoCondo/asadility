@@ -18,15 +18,12 @@ export class RegisterComponent {
       password:this.password
     };
 
-    // Llama al método crearActividad del servicio
     this.authService.crearUsuario(datosUsuario).subscribe(
       (respuesta) => {
         console.log('Usuario creado con éxito', respuesta);
-        // Realiza acciones adicionales después de crear la actividad
       },
       (error) => {
         console.error('Error al crear usuario', error);
-        // Maneja el error según tus necesidades
       }
     );
   }

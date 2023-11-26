@@ -36,26 +36,21 @@ export class AuthService {
         (response) => {
           const codigoEstado = response.status;
           
-          // Check if the status is 200 (OK)
           if (codigoEstado === 200) {
-            // Check if the response body has the 'Autenticado' property
             if (response.Autenticado) {
               resolve(true);
             } else {
               resolve(false);
             }
           } else if (codigoEstado === 401) {
-            // Handle authentication failure (Unauthorized)
             resolve(false);
           } else {
-            // Handle other status codes if needed
             resolve(false);
           }
         },
         (error) => {
           console.error('Error:', error);
   
-          // You might want to reject the promise with the error
           reject(error);
         }
       );
@@ -63,7 +58,7 @@ export class AuthService {
   }
 
   crearUsuario(datosUsuario: any): Observable<any> {
-    const urlFinal = `${this.url}/register`; // Ajusta la ruta según tu backend
+    const urlFinal = `${this.url}/register`;
     return this.http.post<any>(urlFinal, datosUsuario);
   }
 }

@@ -6,8 +6,6 @@ var crypto = require("crypto");
 
  const router = express.Router();
 
-// Agregar rooms a la DB
-// espera propiedad actividades como array de ids (ids de la base de Mongo)
 router.post('/rooms', async function(req, res) {
     const code = crypto.randomBytes(10).toString('hex');
     let actividadesIds = req.body;

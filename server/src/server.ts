@@ -14,7 +14,6 @@ var app = express();
 app.use(express.json());
 app.use(bodyParser.json());
 
-//Inicialización del SocketIO
 const httpServer = createServer(app);
 const io = require("socket.io")(httpServer, {
     cors: { origin: "*" },
@@ -73,7 +72,6 @@ io.on("connection", (socket: any) => {
 
 
 httpServer.listen(socketPort);
-//Fin Inicialización del Socket IO
 
 connectDB();
 

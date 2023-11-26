@@ -23,7 +23,6 @@ export class CrearRoomComponent implements OnInit {
         private roomService: RoomService
         ) {}
     
-    // Método para recuperar las actividades cargadas en el sistema
     traerActividades(){
         this.actividadesService.getActividades().subscribe(
             result => {
@@ -57,11 +56,9 @@ export class CrearRoomComponent implements OnInit {
         this.roomService.crearRoom(juegosDeSala).subscribe(
             (respuesta) => {
                 console.log('Sala creada con éxito', respuesta);
-                // Realiza acciones adicionales después de crear la actividad
               },
               (error) => {
                 console.error('Error al crear la sala', error);
-                // Maneja el error según tus necesidades
               }
         )
     }

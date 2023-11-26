@@ -39,7 +39,6 @@ import { ResultadosComponent } from './resultados/resultados.component';
     HttpClientModule
   ],
   providers: [
-    // comentado para que no se active la intercepcion de requests con jwt
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthinterceptorService,
