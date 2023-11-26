@@ -1,3 +1,4 @@
 export interface Jugador{
-    nombre: string;
+    id: string,
+    name: string;
 }

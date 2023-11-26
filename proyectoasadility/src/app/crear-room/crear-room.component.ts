@@ -32,7 +32,7 @@ export class CrearRoomComponent implements OnInit {
                 this.actividades = result.actividades
                 for (const actividad of this.actividades){
                     const actividadChequeable = {
-                        id: actividad._id,
+                        id: actividad.id,
                         name: actividad.name,
                         checked: false
                     }
