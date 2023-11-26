@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class CrearRoomComponent implements OnInit {
     actividades: Juego[] = [];
     public checkeados: Checkeado[] = [];
+    roomCode: string = "";
 
     ngOnInit(): void {
         this.traerActividades();
@@ -61,9 +62,7 @@ export class CrearRoomComponent implements OnInit {
             console.log(juegosDeSala)
             this.roomService.crearRoom(juegosDeSala).subscribe(
                 (respuesta) => {
-                    console.log('Sala creada con éxito', respuesta);
-                    alert('¡Sala creada con éxito! Ahora puedes ingresar a tu sala desde el Dashboard');
-                    this.router.navigateByUrl('/dashboard');
+                    this.roomCode = respuesta.code;
                   },
                   (error) => {
                     console.error('Error al crear la sala', error);

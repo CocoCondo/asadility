@@ -15,7 +15,7 @@ router.post('/rooms', async function(req, res) {
             actividadesIds.map(async (actividadId: String, index: number) => {
                 const dbActividad: any = await modeloActivity.findById(new mongo.ObjectId(actividadId));
                 return {
-                    id: index,
+                    _id: index,
                     name: dbActividad.name,
                     description: dbActividad.description,
                     img: dbActividad.img,

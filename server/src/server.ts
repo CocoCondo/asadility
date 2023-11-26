@@ -69,6 +69,18 @@ io.on("connection", (socket: any) => {
             }
         );
     });
+
+    socket.on("end", async function(data: any) {
+        const roomId = data.roomId;
+        await modeloRooms.updateOne(
+            { code: roomId },
+            {
+                $set: {
+                    'players': [],
+                },
+            }
+        );
+    });
 });
 
 

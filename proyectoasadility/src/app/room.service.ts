@@ -14,8 +14,7 @@ import { Observable } from 'rxjs';
     ) { }
     
     crearRoom(actividades: any): Observable<any> {
-        console.log("Estamos enviando esto: " + actividades)
-        const urlFinal = `${this.url}`; // Ajusta la ruta según tu backend
+        const urlFinal = `${this.url}`;
         return this.http.post<any>(urlFinal, actividades);
     }
 
