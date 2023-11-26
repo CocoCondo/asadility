@@ -31,8 +31,9 @@ export class CrearRoomComponent implements OnInit {
             result => {
                 this.actividades = result.actividades
                 for (const actividad of this.actividades){
+                    console.log("ID de actividad: " + actividad._id);
                     const actividadChequeable = {
-                        id: actividad.id,
+                        id: actividad._id,
                         name: actividad.name,
                         checked: false
                     }
@@ -58,6 +59,7 @@ export class CrearRoomComponent implements OnInit {
         if (juegosDeSala.length === 0){
             alert('¡Debe seleccionar al menos una actividad!');
         }else{
+            console.log(juegosDeSala)
             this.roomService.crearRoom(juegosDeSala).subscribe(
                 (respuesta) => {
                     console.log('Sala creada con éxito', respuesta);

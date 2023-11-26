@@ -11,7 +11,7 @@ import { Juego } from '../Juego';
 export class VotacionComponent implements OnInit{
 
   @Input() roomId: string = "";
-  actividad: Juego = {id: 0, name: "", description: "", img: "", votes: 0};
+  actividad: Juego = {_id: 0, name: "", description: "", img: "", votes: 0};
   
   constructor(private socketService: SocketService) { }
 
