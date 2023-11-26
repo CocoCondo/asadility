@@ -1,5 +1,5 @@
 export interface Juego{
-    id: number,
+    _id: number,
     name: string,
     description:string,
     img:string,
