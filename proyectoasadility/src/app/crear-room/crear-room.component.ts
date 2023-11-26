@@ -4,6 +4,7 @@ import { Juego } from '../Juego';
 import { Checkeado } from '../checkeado';
 import { ActividadesService } from '../actividades.service';
 import { RoomService } from '../room.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-room',
@@ -20,7 +21,8 @@ export class CrearRoomComponent implements OnInit {
 
     constructor(
         private actividadesService: ActividadesService,
-        private roomService: RoomService
+        private roomService: RoomService,
+        private router: Router
         ) {}
     
     // Método para recuperar las actividades cargadas en el sistema
@@ -53,16 +55,21 @@ export class CrearRoomComponent implements OnInit {
                 juegosDeSala.push(idDeJuego);
             }
         }
-        console.log("Estos son los juegos a agregar: " + juegosDeSala)
-        this.roomService.crearRoom(juegosDeSala).subscribe(
-            (respuesta) => {
-                console.log('Sala creada con éxito', respuesta);
-                // Realiza acciones adicionales después de crear la actividad
-              },
-              (error) => {
-                console.error('Error al crear la sala', error);
-                // Maneja el error según tus necesidades
-              }
-        )
+        if (juegosDeSala.length === 0){
+            alert('¡Debe seleccionar al menos una actividad!');
+        }else{
+            this.roomService.crearRoom(juegosDeSala).subscribe(
+                (respuesta) => {
+                    console.log('Sala creada con éxito', respuesta);
+                    alert('¡Sala creada con éxito!');
+                    this.router.navigateByUrl('/admindashboard'); //editar con la ruta que se crea necesaria
+                  },
+                  (error) => {
+                    console.error('Error al crear la sala', error);
+                    alert('Error al crear la sala...');
+                  }
+            )
+        }
+        
     }
 }
