@@ -16,7 +16,7 @@ router.get('/rooms/:code/players', async function(req, res) {
 
     res.json({players});
   }catch (error: any){
-    res.status(500).json({error: error.message})
+    res.status(500).json({error: "No se pudo obtener los jugadores"})
   }
 })
 

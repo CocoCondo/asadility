@@ -35,7 +35,6 @@ export class DashboardComponent implements OnInit  {
   }
 
   login() {
-    console.log('Login:', this.username, this.password);
     if (this.username && this.password) {
       this.authService.login(this.username, this.password)
         .pipe(
@@ -45,7 +44,6 @@ export class DashboardComponent implements OnInit  {
         )
         .subscribe({
           next: (res: any) => {
-            console.log("logged in");
             this.router.navigateByUrl('/admindashboard');
           },
           error: (err: any) => {

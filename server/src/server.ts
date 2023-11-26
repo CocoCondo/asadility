@@ -7,7 +7,6 @@ import connectDB from './db-connect.ts';
 import bodyParser from "body-parser";
 import { createServer } from "http";
 import { Activity } from './activity.ts';
-import { Player } from './player.ts';
 import { modeloRooms } from './models/rooms/index.ts';
 
 var app = express();
@@ -19,8 +18,6 @@ const io = require("socket.io")(httpServer, {
     cors: { origin: "*" },
 });
 const socketPort = 3000;
-
-var players: Player[];
 
 io.on("connection", (socket: any) => {
     socket.on('joinroom', async function(data: any) {
