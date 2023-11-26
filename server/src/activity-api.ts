@@ -9,11 +9,11 @@ router.get('/actividades',  async (req, res) => {
         const actividades = await modeloActivity.find();
 
         if (!actividades) {
-            return res.status(404).json({ mensaje: `Actividades no encontradas` });
+            return res.status(404).json({ error: `Actividades no encontradas` });
         }
         res.json({ actividades });
     } catch (error: any) {
-        res.status(500).json({message: "No se pudo obtener las actividades"});
+        res.status(500).json({error: "No se pudo obtener las actividades"});
     }
 });
 
@@ -28,7 +28,7 @@ router.get('/rooms/:code/actividades', async function(req: Request, res: Respons
       }
     } 
     catch(error: any) {
-        res.status(500).json({message: "No se pudo obtener las actividades"});
+        res.status(500).json({error: "No se pudo obtener las actividades"});
     }
   })
   
@@ -42,7 +42,7 @@ router.get('/rooms/:code/actividades', async function(req: Request, res: Respons
       .then(actividad => {
         res.status(201).json({ mensaje: 'Actividad agregada con éxito', actividad: actividad });
       })
-      .catch(error => res.status(500).json({message: "No se pudo crear la actividad"}));
+      .catch(error => res.status(500).json({error: "No se pudo crear la actividad"}));
   });
 
 export default router;
