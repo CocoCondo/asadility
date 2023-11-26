@@ -10,7 +10,8 @@ var crypto = require("crypto");
 // espera propiedad actividades como array de ids (ids de la base de Mongo)
 router.post('/rooms', async function(req, res) {
     const code = crypto.randomBytes(10).toString('hex');
-    let actividadesIds = req.body.actividades;
+    let actividadesIds = req.body;
+    console.log("Body: " + req.body);
 
     try {
         let actividades = await Promise.all(

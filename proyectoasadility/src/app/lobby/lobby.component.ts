@@ -15,9 +15,11 @@ export class LobbyComponent {
   juegos: Juego[] = [];
   jugadores: Jugador[] = [];
   selectedJuego: Juego = {
-    id: 0,
-    imagen: "",
-    nombre: ""
+    _id: 0,
+    img: "",
+    name: "",
+    description: "",
+    votes: 0
   }
   constructor(private jugadorService: JugadorService, private route: ActivatedRoute) { }
 

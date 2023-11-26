@@ -13,6 +13,7 @@ import { LobbyComponent } from './lobby/lobby.component';
 // Interceptors
 import { AuthinterceptorService } from './authinterceptor.service';
 import { CrearActividadComponent } from './crear-actividad/crear-actividad.component';
+import { CrearRoomComponent } from './crear-room/crear-room.component';
 import { RegisterComponent } from './register/register.component';
 
 @NgModule({
@@ -24,6 +25,7 @@ import { RegisterComponent } from './register/register.component';
     AdminDashboardComponent,
     LobbyComponent,
     CrearActividadComponent,
+    CrearRoomComponent,
     RegisterComponent
   ],
   imports: [

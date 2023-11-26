@@ -6,6 +6,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { LobbyComponent } from './lobby/lobby.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { CrearActividadComponent } from './crear-actividad/crear-actividad.component';
+import { CrearRoomComponent } from './crear-room/crear-room.component';
 import { AuthService } from './auth.service';
 import { RegisterComponent } from './register/register.component';
 
@@ -20,6 +21,10 @@ const routes: Routes = [
   },
   {
     path: 'admindashboard/crearactividad', title: 'Crear actividad', component: CrearActividadComponent,
+    canActivate: [() => inject(AuthService).isAuthenticated()],
+  },
+  {
+    path: 'admindashboard/crear_room', title: 'Crear Room', component: CrearRoomComponent,
     canActivate: [() => inject(AuthService).isAuthenticated()],
   },
   { path: '**', title: 'Not found :(', component: PageNotFoundComponent },
