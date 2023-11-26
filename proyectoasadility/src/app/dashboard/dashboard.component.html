@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="row">
+    <div *ngIf="!showLobby && !showVoting && !showResults " class="row">
       <!-- Lado Izquierdo - HOST -->
       <div class="col-md-6 host-btn" (click)="showHostForm()">
         HOST
@@ -44,4 +44,16 @@
       </div>
     </div>
   </div>
-  
+
+  <div *ngIf="showLobby" class="row">
+    <app-lobby [start]="start"></app-lobby>
+  </div>
+
+  <div *ngIf="showVoting" class="row">
+    <app-votacion [roomId]="roomNumber"></app-votacion>
+  </div>
+
+
+  <div *ngIf="showResults" class="row">
+    <app-resultados></app-resultados>
+  </div>
