@@ -20,7 +20,6 @@ import { Observable } from 'rxjs';
 
     getActividades(roomId: string): Observable<any> {
       const urlFinal = `${this.url}/${roomId}/activities`;
-      console.log("Esta es la URL: " + urlFinal);
       return this.http.get<any>(urlFinal)
     }
 

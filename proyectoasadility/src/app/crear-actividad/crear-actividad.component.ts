@@ -25,7 +25,7 @@ export class CrearActividadComponent {
 
     this.actividadesService.crearActividad(datosActividad).subscribe(
       (respuesta) => {
-        console.log('Actividad creada con éxito', respuesta);
+        console.log('Actividad creada con éxito');
         if (datosActividad.titulo != '' && datosActividad.descripcion != '') {
           this.mostrarMensaje = true;
           setTimeout(() => {

@@ -31,7 +31,6 @@ export class CrearRoomComponent implements OnInit {
             result => {
                 this.actividades = result.actividades
                 for (const actividad of this.actividades){
-                    console.log("ID de actividad: " + actividad._id);
                     const actividadChequeable = {
                         id: actividad._id,
                         name: actividad.name,
@@ -39,11 +38,9 @@ export class CrearRoomComponent implements OnInit {
                     }
                     this.checkeados.push(actividadChequeable);
                 }
-                console.log("Actividades cargadas exitosamente", this.actividades);
-                console.log("Actividades a checkear", this.checkeados);
             },
             error => {
-                console.log("Error al traer las actividades " + error);
+                console.log("Error al traer las actividades ");
             }
         )
     }
@@ -59,7 +56,6 @@ export class CrearRoomComponent implements OnInit {
         if (juegosDeSala.length === 0){
             alert('¡Debe seleccionar al menos una actividad!');
         }else{
-            console.log(juegosDeSala)
             this.roomService.crearRoom(juegosDeSala).subscribe(
                 (respuesta) => {
                     this.roomCode = respuesta.code;
