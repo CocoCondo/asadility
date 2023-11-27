@@ -21,6 +21,9 @@
           <p>*Revise sus datos, y recuerde su contraseña*</p>
           <button type="button" (click)='crearNuevoUsuario()'>Crear usuario</button>
         </form>
+        <div *ngIf="mostrarMensaje" class="mensaje-emergente">
+          {{ mensaje }}
+        </div>
       </div>
     </div>
   </div>
