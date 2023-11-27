@@ -5,6 +5,7 @@ import {catchError} from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { SocketService } from '../socket.service';
 import { OnInit } from '@angular/core';
+import { Juego } from '../Juego';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,8 +22,13 @@ export class DashboardComponent implements OnInit  {
   password: string = '';
   roomNumber: string = '';
   joinName: string = '';
+  roomActivities: Juego[] = [];
 
-  constructor(private authService: AuthService, private socketService: SocketService, private router: Router){}
+  constructor(
+    private authService: AuthService, 
+    private socketService: SocketService, 
+    private router: Router
+  ){}
 
   showHostForm() {
     this.showHost = true;
@@ -67,7 +73,7 @@ export class DashboardComponent implements OnInit  {
   }
 
   ngOnInit() {
-    this.socketService.getEnd().subscribe((roomId: string) => {
+    this.socketService.getEnd().subscribe((data) => {
       this.showHost = false;
       this.showJoin = false;
       this.showVoting = false;

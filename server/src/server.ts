@@ -61,7 +61,7 @@ io.on("connection", (socket: any) => {
         const roomId = data.roomId;
         const actividadId = data.actividadId;
         await modeloRooms.updateOne(
-            { code: roomId, 'actividades.id': Number(actividadId) },
+            { code: roomId, 'actividades._id': Number(actividadId) },
             {
                 $inc: {
                 'actividades.$.votes': 1,
@@ -94,7 +94,7 @@ app.use(cors({
 }));
 
 //Rutas de la API
-app.use(roomUserApi);
+app.use("/api", roomUserApi);
 app.use("/api", roomAdminApi, authenticateToken);
 app.use("/api", activityApi, authenticateToken);
 app.use(autenticacion);
