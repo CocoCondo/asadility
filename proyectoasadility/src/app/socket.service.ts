@@ -54,7 +54,7 @@ export class SocketService {
     this.socket.emit('vote', {roomId: roomId, actividadId: actividadId});
   }
 
-  getEnd(){
+  getEnd() : Observable<any> {
     let observable = new Observable<any>(observer => {
       this.socket.on('goBackToLobby', (data: any) => {
         observer.next(data);

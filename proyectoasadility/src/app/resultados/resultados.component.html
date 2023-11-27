@@ -1,1 +1,9 @@
-<p>resultados works!</p>
+<div class="container">
+    <h1>Resultado final de los votos</h1>
+    <div *ngFor="let activity of roomActivities">
+        <div class="actividad">
+            <p>Nombre de la actividad: {{activity.name}}</p>
+            <p>Cantidad de votos que recibió: {{activity.votes}}</p>
+        </div>
+    </div>
+</div>
