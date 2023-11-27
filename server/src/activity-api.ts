@@ -9,11 +9,11 @@ router.get('/actividades',  async (req, res) => {
         const actividades = await modeloActivity.find();
 
         if (!actividades) {
-            return res.status(404).json({ mensaje: `Actividades no encontradas` });
+            return res.status(404).json({ error: `Actividades no encontradas` });
         }
         res.json({ actividades });
     } catch (error: any) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json({error: "No se pudo obtener las actividades"});
     }
 });
 
@@ -24,11 +24,11 @@ router.get('/rooms/:code/actividades', async function(req: Request, res: Respons
       if (room) {
         res.status(200).json(room.actividades);
       } else {
-        res.status(400).json('Sala no existe');
+        res.status(404).json('Sala no existe');
       }
     } 
     catch(error: any) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json({error: "No se pudo obtener las actividades"});
     }
   })
   
@@ -36,15 +36,13 @@ router.get('/rooms/:code/actividades', async function(req: Request, res: Respons
     const newActividad = new modeloActivity({
       name:req.body.titulo,
       description:req.body.descripcion,
-      img:req.body.img
-
-    
+      img:req.body.img   
     });
     newActividad.save()
       .then(actividad => {
         res.status(201).json({ mensaje: 'Actividad agregada con éxito', actividad: actividad });
       })
-      .catch(error => res.status(500).json({ error: error.message }));
+      .catch(error => res.status(500).json({error: "No se pudo crear la actividad"}));
   });
 
 export default router;

@@ -17,7 +17,7 @@ router.get('/rooms/:code/activities', async function(req, res) {
 
     res.json({activities});
   }catch (error: any){
-    res.status(500).json({error: error.message})
+    res.status(500).json({error: "No se pudo obtener los jugadores"})
   }
 })
 
