@@ -41,3 +41,34 @@ body, html {
     background-color: #0056b3; /* Color de fondo del botón al pasar el ratón */
     transform: scale(1.1);
   }
+
+  .back-button {
+    display: inline-flex;
+    align-items: center;
+    font-size: 18px; /* Ajusta el tamaño del texto del botón */
+    text-decoration: none;
+    padding: 10px 20px; /* Ajusta el relleno del botón */
+    background-color: #337ab7; /* Color de fondo del botón */
+    color: #fff; /* Color del texto */
+    border: none;
+    border-radius: 5px; /* Agrega bordes redondeados al botón */
+  }
+  
+  .arrow-left {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #fff transparent transparent;
+    margin-right: 10px; /* Espacio entre la flecha y el texto */
+  }
+  
+  .back-button:hover {
+    background-color: #286090; /* Color de fondo en hover */
+  }
+
+  .back-button-container {
+    width: 100%; /* Ajusta el ancho según tus necesidades */
+    text-align: left; /* Alinea el contenido a la izquierda */
+}
+
