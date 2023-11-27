@@ -23,7 +23,7 @@ export class RegisterComponent {
 
     this.authService.crearUsuario(datosUsuario).subscribe(
       (respuesta) => {
-        console.log('Usuario creado con éxito', respuesta);
+        console.log('Usuario creado con éxito');
         if (datosUsuario.username != '' && datosUsuario.password != '') {
           this.mostrarMensaje = true;
           // Oculta el mensaje después de 3 segundos (3000 milisegundos)

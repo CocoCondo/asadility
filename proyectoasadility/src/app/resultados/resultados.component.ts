@@ -16,7 +16,6 @@ export class ResultadosComponent implements OnInit{
   constructor(private roomService: RoomService) { }
 
   ngOnInit() {
-      console.log("Esta es la room: " + this.roomId);
       this.roomService.getActividades(this.roomId).subscribe(
         result => {
         this.roomActivities = result.activities;

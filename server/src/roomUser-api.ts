@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.get('/rooms/:code/activities', async function(req, res) {
   const roomCode = req.params.code;
-  console.log("Este es el roomCode que me llegó: " + roomCode);
   try{
     const room = await modeloRooms.findOne({ code:roomCode });
 
