@@ -21,7 +21,7 @@
           [(ngModel)]="descripcion" [ngModelOptions]="{standalone: true}"></textarea>
         <p>Ingrese una imágen para la actividad *Opcional*</p>
         <div class="mb-3">
-          <input type="file" class="form-control" aria-label="file example" required [(ngModel)]="img" [ngModelOptions]="{standalone: true}">
+          <input type="text" class="form-control" required [(ngModel)]="img" [ngModelOptions]="{standalone: true}">
           <div class="invalid-feedback">Example invalid form file feedback</div>
         </div>
         <button type="button" (click)="crearNuevaActividad()">Crear actividad</button>
